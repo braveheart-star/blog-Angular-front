@@ -3,7 +3,7 @@ import { Blog } from './../model/blog.model';
 import {
   AddBlog,
   DeleteBlog,
-  GetBloges,
+  GetBlogs,
   UpdateBlog,
 } from './../store/blog.action';
 import { BlogService } from './../services/blog.service';
@@ -11,14 +11,14 @@ import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 export class BlogStateModel {
-  bloges: Blog[];
+  blogs: Blog[];
   loaded: boolean;
 }
 
 @State<BlogStateModel>({
-  name: 'bloges',
+  name: 'blogs',
   defaults: {
-    bloges: [],
+    blogs: [],
     loaded: false,
   },
 })
@@ -27,22 +27,22 @@ export class BlogState {
 
   @Selector()
   static getBlogList(state: BlogStateModel) {
-    return state.bloges;
+    return state.blogs;
   }
 
   @Selector()
-  static areBlogesLoaded(state: BlogStateModel) {
+  static areBlogsLoaded(state: BlogStateModel) {
     return state.loaded;
   }
 
-  @Action(GetBloges)
+  @Action(GetBlogs)
   getCourses({ getState, setState }: StateContext<BlogStateModel>) {
-    return this.blogService.getAllBloges().pipe(
+    return this.blogService.getAllBlogs().pipe(
       tap((result) => {
         const state = getState();
         setState({
           ...state,
-          bloges: result,
+          blogs: result,
           loaded: true,
         });
       })
@@ -57,10 +57,10 @@ export class BlogState {
     return this.blogService.deleteBlog(id).pipe(
       tap((result) => {
         const state = getState();
-        const filteredArray = state.bloges.filter((item) => item.id !== id);
+        const filteredArray = state.blogs.filter((item) => item.id !== id);
         setState({
           ...state,
-          bloges: filteredArray,
+          blogs: filteredArray,
         });
       })
     );
@@ -74,13 +74,13 @@ export class BlogState {
     return this.blogService.updateBlog(id, payload).pipe(
       tap((result) => {
         const state = getState();
-        const blogList = [...state.bloges];
+        const blogList = [...state.blogs];
         const blogIndex = blogList.findIndex((item) => item.id === id);
         blogList[blogIndex] = result;
 
         setState({
           ...state,
-          bloges: blogList,
+          blogs: blogList,
         });
       })
     );
@@ -95,9 +95,9 @@ export class BlogState {
       tap((result) => {
         const state = getState();
         patchState({
-          bloges: [...state.bloges, result],
+          blogs: [...state.blogs, result],
         });
-        this.router.navigateByUrl('/bloges');
+        this.router.navigateByUrl('/blogs');
       })
     );
   }

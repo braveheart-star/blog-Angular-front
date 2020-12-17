@@ -11,7 +11,7 @@ export class BlogService {
     this.http = http;
   }
 
-  getAllBloges(): Observable<Blog[]> {
+  getAllBlogs(): Observable<Blog[]> {
     return this.http.get<Blog[]>('/api/blog');
   }
 

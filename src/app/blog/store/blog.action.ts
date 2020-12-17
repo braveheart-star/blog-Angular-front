@@ -6,7 +6,7 @@ export class AddBlog {
   constructor(public payload: Blog) {}
 }
 
-export class GetBloges {
+export class GetBlogs {
   static readonly type = '[Blog] Get';
 }
 
