@@ -12,18 +12,18 @@ export class BlogService {
   }
 
   getAllBlogs(): Observable<Blog[]> {
-    return this.http.get<Blog[]>('/api/blog');
+    return this.http.get<Blog[]>('/api/blogs');
   }
 
   createBlog(blog: Blog): Observable<Blog> {
-    return this.http.post<Blog>('api/blog', blog);
+    return this.http.post<Blog>('api/blogs', blog);
   }
 
   deleteBlog(blogId: number): Observable<any> {
-    return this.http.delete('api/blog/' + blogId);
+    return this.http.delete('api/blogs/' + blogId);
   }
 
   updateBlog(blogId: number, blog: Blog): Observable<any> {
-    return this.http.put('/api/blog/' + blogId, blog);
+    return this.http.put('/api/blogs/' + blogId, blog);
   }
 }

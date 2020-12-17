@@ -9,6 +9,7 @@ import {
 import { BlogService } from './../services/blog.service';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
 
 export class BlogStateModel {
   blogs: Blog[];
@@ -22,6 +23,7 @@ export class BlogStateModel {
     loaded: false,
   },
 })
+@Injectable()
 export class BlogState {
   constructor(private blogService: BlogService, private router: Router) {}
 
@@ -36,7 +38,7 @@ export class BlogState {
   }
 
   @Action(GetBlogs)
-  getCourses({ getState, setState }: StateContext<BlogStateModel>) {
+  getBlogs({ getState, setState }: StateContext<BlogStateModel>) {
     return this.blogService.getAllBlogs().pipe(
       tap((result) => {
         const state = getState();
@@ -50,7 +52,7 @@ export class BlogState {
   }
 
   @Action(DeleteBlog)
-  deleteCourse(
+  deleteBlog(
     { getState, setState }: StateContext<BlogStateModel>,
     { id }: DeleteBlog
   ) {
@@ -67,7 +69,7 @@ export class BlogState {
   }
 
   @Action(UpdateBlog)
-  updateCourse(
+  updateBlog(
     { getState, setState }: StateContext<BlogStateModel>,
     { payload, id }: UpdateBlog
   ) {
@@ -87,7 +89,7 @@ export class BlogState {
   }
 
   @Action(AddBlog)
-  addTodo(
+  addBlog(
     { getState, patchState }: StateContext<BlogStateModel>,
     { payload }: AddBlog
   ) {

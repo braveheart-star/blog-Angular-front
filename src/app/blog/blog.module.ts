@@ -1,11 +1,31 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BlogComponent } from './blog.component';
+import { FormsModule } from '@angular/forms';
+
+// http client
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
+
+// service
+import { BlogService } from './services/blog.service';
+
+// components
+import { CreateBlogComponent } from './components/create-blog/create-blog.component';
+import { BlogsListComponent } from './components/blogs-list/blogs-list.component';
 
 @NgModule({
+  declarations: [CreateBlogComponent, BlogsListComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
+      dataEncapsulation: false,
+    }),
   ],
-  declarations: [BlogComponent]
+
+  providers: [BlogService],
+  exports: [CreateBlogComponent, BlogsListComponent],
 })
-export class BlogModule { }
+export class BlogModule {}
