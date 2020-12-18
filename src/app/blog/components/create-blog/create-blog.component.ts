@@ -22,8 +22,7 @@ export class CreateBlogComponent implements OnInit {
     }
 
     const blog: Blog = {
-      id: uuid.v4(),
-      title: submittedForm.value.name,
+      title: submittedForm.value.title,
       description: submittedForm.value.description,
     };
     this.store.dispatch(new CreateBlog(blog));

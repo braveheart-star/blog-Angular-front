@@ -90,18 +90,15 @@ export class BlogState {
     { getState, setState }: StateContext<BlogStateModel>,
     { payload, id }: UpdateBlog
   ) {
-    return this.blogService.updateBlog(id, payload).pipe(
+    return this.blogService.updateBlog({ id, ...payload }).pipe(
       tap((result) => {
-        console.log('result from service, store', result);
-
         const state = getState();
-        const blogList = [...state.blogs];
-        const blogIndex = blogList.findIndex((item) => item.id === id);
-        blogList[blogIndex] = result;
-
+        // const blogList = [...state.blogs];
+        // const blogIndex = blogList.findIndex((item) => item.id === id);
+        // blogList[blogIndex] = result;
         setState({
           ...state,
-          blogs: blogList,
+          blogs: result,
         });
       })
     );

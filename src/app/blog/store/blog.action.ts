@@ -1,9 +1,14 @@
 import { Blog } from './../model/blog.model';
 
+export class BlogDto {
+  title: string;
+  description: string;
+}
+
 export class CreateBlog {
   static readonly type = '[Blog ] Add';
 
-  constructor(public payload: Blog) {}
+  constructor(public payload: BlogDto) {}
 }
 
 export class GetBlogs {
@@ -13,7 +18,7 @@ export class GetBlogs {
 export class UpdateBlog {
   static readonly type = '[Blog] Update';
 
-  constructor(public payload: Blog, public id: number) {}
+  constructor(public payload: BlogDto, public id: number) {}
 }
 
 export class DeleteBlog {

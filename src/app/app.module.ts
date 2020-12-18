@@ -21,6 +21,8 @@ import { AuthState } from './auth/store/auth.state';
 import { AuthGuard } from './guards/auth.guard';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 const routes = [
+  { path: 'auth/login', component: LoginComponent },
+  { path: 'auth/signup', component: SignupComponent },
   {
     path: 'blogs',
     component: BlogsListComponent,
@@ -31,8 +33,7 @@ const routes = [
     component: CreateBlogComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'auth/login', component: LoginComponent },
-  { path: 'auth/signup', component: SignupComponent },
+
   { path: '**', redirectTo: 'auth/login' },
 ];
 
