@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Credentials } from '../store/auth.action';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,12 @@ export class AuthService {
 
   private authUrl = 'http://localhost:4000/api/auth';
 
-  // handleOnSingup(user:User) {
-  //   return this.http.get(this.authUrl + '/signup');
-  // }
+  handleOnSingup(payload: Credentials) {
+    console.log('auth payload ====> ', payload);
+    return this.http.post(this.authUrl + '/register', payload);
+  }
+
+  handleOnLogin(payload: Credentials) {
+    return this.http.post(this.authUrl + '/login', payload);
+  }
 }

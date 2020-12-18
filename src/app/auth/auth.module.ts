@@ -14,5 +14,6 @@ import { AuthService } from './service/auth.service';
   imports: [CommonModule, FormsModule, HttpClientModule],
   declarations: [LoginComponent, SignupComponent],
   providers: [AuthService],
+  exports: [SignupComponent, LoginComponent],
 })
 export class AuthModule {}

@@ -41,6 +41,7 @@ export class BlogState {
   getBlogs({ getState, setState }: StateContext<BlogStateModel>) {
     return this.blogService.getAllBlogs().pipe(
       tap((result) => {
+        console.log('result from getblog', result);
         const state = getState();
         setState({
           ...state,

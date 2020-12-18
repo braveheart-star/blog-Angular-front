@@ -1,3 +1,37 @@
-<p>
-  login works!
-</p>
+
+<div>
+  <form class="p-3 mx-10 mt-10 bg-green-100 rounded shadow sm:w-1/2" (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm">
+    
+    <h4 class="mb-4 text-2xl text-center text-gray-800">Log In</h4>
+
+    <div class="p-4 my-8 shadow bg-green-50">
+      <div class="items-center my-4 sm:flex form-group">
+        <label  class="text-xl text-gray-800 sm:w-1/4" for="name">Email :</label>
+        <input
+        placeholder="email"
+          type="email"
+          id="email"
+          name="email"
+          class="w-full p-2 text-sm text-gray-800 border bg-gray-50 sm:mx-4 sm:w-1/2 form-control"
+          ngModel
+          required
+        />
+      </div>
+      <div class="items-center my-4 sm:flex form-group">
+        <label  class="text-xl text-gray-800 sm:w-1/4" for="side">Password :</label>
+        <input
+        placeholder="password"
+          type="password"
+          id="password"
+          name="password"
+          class="w-full p-2 text-sm text-gray-800 border bg-gray-50 sm:mx-4 sm:w-1/2 form-control"
+          ngModel
+          required
+        />
+      </div>
+    </div>
+  
+    <button [disabled]="registerForm.invalid"  class="p-2 px-4 text-white bg-green-500 rounded " type="submit">Login</button>
+  </form>
+</div>
+

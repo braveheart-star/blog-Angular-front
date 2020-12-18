@@ -12,10 +12,12 @@ import { CreateBlogComponent } from './blog/components/create-blog/create-blog.c
 import { BlogsListComponent } from './blog/components/blogs-list/blogs-list.component';
 import { BlogState } from './blog/store/blog.state';
 
+import { AuthModule } from './auth/auth.module';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/components/login/login.component';
 import { SignupComponent } from './auth/components/signup/signup.component';
-
+import { AuthState } from './auth/store/auth.state';
 const routes = [
   {
     path: 'blogs',
@@ -31,11 +33,13 @@ const routes = [
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    AuthModule,
+    BlogModule,
     RouterModule.forRoot(routes),
     NgxsModule.forRoot([BlogState]),
+    NgxsModule.forRoot([AuthState]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
-    BlogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
