@@ -30,7 +30,10 @@ export class AuthState {
   }
 
   @Action(Register)
-  handleRegister({ payload }: Register) {
+  handleRegister(
+    { getState, setState }: StateContext<AuthStateModel>,
+    { payload }: Register
+  ) {
     return this.authService.handleOnSingup(payload).pipe(
       tap((result) => {
         this.router.navigateByUrl('/login');

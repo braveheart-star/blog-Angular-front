@@ -15,7 +15,6 @@ export class AuthService {
   private authUrl = 'http://localhost:4000/api/auth';
 
   handleOnSingup(payload: Credentials) {
-    console.log('auth payload ====> ', payload);
     return this.http.post(this.authUrl + '/register', payload);
   }
 
