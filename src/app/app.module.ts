@@ -13,6 +13,8 @@ import { BlogsListComponent } from './blog/components/blogs-list/blogs-list.comp
 import { BlogState } from './blog/store/blog.state';
 
 import { AppComponent } from './app.component';
+import { LoginComponent } from './auth/components/login/login.component';
+import { SignupComponent } from './auth/components/signup/signup.component';
 
 const routes = [
   {
@@ -20,7 +22,9 @@ const routes = [
     component: BlogsListComponent,
   },
   { path: 'create-blog', component: CreateBlogComponent },
-  { path: '**', redirectTo: 'blogs' },
+  { path: 'auth/login', component: LoginComponent },
+  { path: 'auth/signup', component: SignupComponent },
+  { path: '**', redirectTo: 'auth/login' },
 ];
 
 @NgModule({

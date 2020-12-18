@@ -11,19 +11,22 @@ export class BlogService {
     this.http = http;
   }
 
+  private blogsUrl = 'http://localhost:4000/api/blog';
+
   getAllBlogs(): Observable<Blog[]> {
-    return this.http.get<Blog[]>('/api/blogs');
+    return this.http.get<Blog[]>(this.blogsUrl);
   }
 
   createBlog(blog: Blog): Observable<Blog> {
-    return this.http.post<Blog>('api/blogs', blog);
+    return this.http.post<Blog>(this.blogsUrl, blog);
   }
 
   deleteBlog(blogId: number): Observable<any> {
-    return this.http.delete('api/blogs/' + blogId);
+    return this.http.delete(this.blogsUrl + blogId);
   }
 
   updateBlog(blogId: number, blog: Blog): Observable<any> {
-    return this.http.put('/api/blogs/' + blogId, blog);
+    console.log('update blog', blogId, blog);
+    return this.http.put(this.blogsUrl + blogId, blog);
   }
 }

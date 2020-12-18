@@ -1,36 +1,36 @@
-<div class="p-4 bg-gray-100 border">
-  <div class="w-full border border-red-400">
-    <div class="justify-between text-center text-indigo-800 sm:flex">
-      <p scope="col" class="my-2 sm:w-1/3">Name</p>
-      <p scope="col " class="my-2 sm:w-1/3">Description</p>
-      <p scope="col" class="my-2 sm:w-1/3">Operations</p>
+<div class="p-4">
+  <div class="w-full border bg-gray-50">
+    <div class="justify-between text-center text-gray-800 border-b sm:flex">
+      <h2 scope="col" class="py-4 text-2xl sm:w-1/3">Name</h2>
+      <h2 scope="col " class="py-4 text-2xl sm:w-1/3">Description</h2>
+      <h2 scope="col" class="py-4 text-2xl sm:w-1/3">Operations</h2>
     </div>
-    <div class="w-full my-4 text-gray-800">
-      <div *ngFor="let blog of blogs$ | async" class="flex justify-between text-center">
+    <div class="w-full text-gray-800">
+      <div *ngFor="let blog of blogs$ | async" class="flex items-center justify-between text-center border-b">
         <p  class="my-2 sm:w-1/3">{{ blog.title }}</p>
         <p  class="my-2 sm:w-1/3"> {{ blog.description }}</p>
         <div  class="my-2 sm:w-1/3">
-          <button (click)="showUpdateForm(blog)" class="p-2 text-white bg-teal-800 rounded-md" >Update</button>
-          <button (click)="deleteBlog(blog.id)" class="p-2 text-white bg-red-500 rounded-md">Delete</button>
+          <button (click)="showUpdateForm(blog)" class="p-2 mx-2 text-white bg-indigo-500 rounded-md" >Update</button>
+          <button (click)="deleteBlog(blog.id)" class="p-2 mx-2 text-white bg-red-500 rounded-md">Delete</button>
         </div>
       </div>
     </div>
   </div>
 
-  <div *ngIf="isUpdateActivated" style="margin-top: 50px; margin-left: 50px;">
-    <h4>Update Course</h4>
+  <div *ngIf="isUpdateActivated"  class="w-1/2 p-3 mx-10 mt-10 rounded shadow bg-gray-50">
+    <h4 class="my-3 text-2xl font-bold text-gray-800">Update Blog</h4>
     <form (ngSubmit)="updateBlog(updateForm)" #updateForm="ngForm">
-      <div class="form-group">
-        <label for="name">Course Name</label>
-        <input type="text" id="name" name="name" class="form-control" required [(ngModel)]="blogToBeUpdated.title"
-          style="width: 400px" />
+      <div class="my-2 form-group">
+        <label class="text-xl text-gray-800" for="name">Blog Title : </label>
+        <input type="text" id="title" name="title" class="p-2 mx-4 text-base text-gray-800 bg-gray-100 border form-control" required [(ngModel)]="blogToBeUpdated.title"
+        />
       </div>
-      <div class="form-group">
-        <label for="side">Description</label>
-        <input type="text" id="description" name="description" class="form-control" required
-          [(ngModel)]="blogToBeUpdated.description" style="width: 400px" />
+      <div class="my-2 form-group">
+        <label class="text-xl text-gray-800" for="side">Description :</label>
+        <input type="text" id="description" name="description" class="p-2 mx-4 text-base text-gray-800 bg-gray-100 border form-control" required
+          [(ngModel)]="blogToBeUpdated.description" />
       </div>
-      <button [disabled]="updateForm.invalid" class="btn btn-primary" type="submit">Update</button>
+      <button [disabled]="updateForm.invalid" class="p-2 px-4 text-white bg-green-500 rounded " type="submit">Update</button>
     </form>
   </div>
 </div>

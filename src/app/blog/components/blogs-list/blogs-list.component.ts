@@ -5,6 +5,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { GetBlogs, DeleteBlog, UpdateBlog } from '../../store/blog.action';
 import { BlogState } from '../../store/blog.state';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-blogs-list',
@@ -45,10 +46,13 @@ export class BlogsListComponent implements OnInit {
 
   showUpdateForm(blog: Blog) {
     this.blogToBeUpdated = { ...blog };
+    console.log('blogToBeUpdated', this.blogToBeUpdated);
     this.isUpdateActivated = true;
   }
 
   updateBlog(updateForm) {
+    console.log('blogToBeUpdated', updateForm.value);
+
     this.store.dispatch(
       new UpdateBlog(updateForm.value, this.blogToBeUpdated.id)
     );

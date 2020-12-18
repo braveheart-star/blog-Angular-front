@@ -1,3 +1,25 @@
-<p>
-  create-blog works!
-</p>
+<form   class="p-3 mx-10 mt-10 rounded shadow sm:w-1/2 bg-gray-50" (ngSubmit)="onSubmit(createForm)" #createForm="ngForm">
+  <div class="justify-between my-2 sm:flex form-group">
+    <label  class="text-xl text-gray-800 sm:w-1/2" for="name">Blog title :</label>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      class="w-full p-2 text-base text-gray-800 bg-gray-100 border sm:mx-4 sm:w-1/2 form-control"
+      ngModel
+      required
+    />
+  </div>
+  <div class="justify-between my-2 sm:flex form-group">
+    <label  class="text-xl text-gray-800 sm:w-1/2" for="side">Description :</label>
+    <input
+      type="text"
+      id="description"
+      name="description"
+      class="w-full p-2 text-base text-gray-800 bg-gray-100 border sm:mx-4 sm:w-1/2 form-control"
+      ngModel
+      required
+    />
+  </div>
+  <button [disabled]="createForm.invalid"  class="p-2 px-4 text-white bg-blue-500 rounded " type="submit">Create</button>
+</form>

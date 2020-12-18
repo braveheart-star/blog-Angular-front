@@ -75,6 +75,8 @@ export class BlogState {
   ) {
     return this.blogService.updateBlog(id, payload).pipe(
       tap((result) => {
+        console.log('result from service, store', result);
+
         const state = getState();
         const blogList = [...state.blogs];
         const blogIndex = blogList.findIndex((item) => item.id === id);

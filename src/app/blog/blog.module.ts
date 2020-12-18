@@ -20,9 +20,10 @@ import { BlogsListComponent } from './components/blogs-list/blogs-list.component
     CommonModule,
     FormsModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
-      dataEncapsulation: false,
-    }),
+    // in memory web api
+    // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
+    //   dataEncapsulation: false,
+    // }),
   ],
 
   providers: [BlogService],
