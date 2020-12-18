@@ -36,7 +36,7 @@ export class AuthState {
   ) {
     return this.authService.handleOnSingup(payload).pipe(
       tap((result) => {
-        this.router.navigateByUrl('/login');
+        // this.router.navigateByUrl('/login');
       })
     );
   }
@@ -58,43 +58,4 @@ export class AuthState {
       })
     );
   }
-
-  //   @Action(DeleteBlog)
-  //   deleteBlog(
-  //     { getState, setState }: StateContext<BlogStateModel>,
-  //     { id }: DeleteBlog
-  //   ) {
-  //     return this.blogService.deleteBlog(id).pipe(
-  //       tap((result) => {
-  //         const state = getState();
-  //         const filteredArray = state.blogs.filter((item) => item.id !== id);
-  //         setState({
-  //           ...state,
-  //           blogs: filteredArray,
-  //         });
-  //       })
-  //     );
-  //   }
-
-  //   @Action(UpdateBlog)
-  //   updateBlog(
-  //     { getState, setState }: StateContext<BlogStateModel>,
-  //     { payload, id }: UpdateBlog
-  //   ) {
-  //     return this.blogService.updateBlog(id, payload).pipe(
-  //       tap((result) => {
-  //         console.log('result from service, store', result);
-
-  //         const state = getState();
-  //         const blogList = [...state.blogs];
-  //         const blogIndex = blogList.findIndex((item) => item.id === id);
-  //         blogList[blogIndex] = result;
-
-  //         setState({
-  //           ...state,
-  //           blogs: blogList,
-  //         });
-  //       })
-  //     );
-  //   }
 }
