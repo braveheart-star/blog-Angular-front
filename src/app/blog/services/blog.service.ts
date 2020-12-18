@@ -18,6 +18,7 @@ export class BlogService {
   }
 
   createBlog(blog: Blog): Observable<Blog> {
+    console.log('create blog ==>', blog);
     return this.http.post<Blog>(this.blogsUrl, blog);
   }
 

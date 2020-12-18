@@ -1,6 +1,6 @@
 import { Blog } from './../model/blog.model';
 
-export class AddBlog {
+export class CreateBlog {
   static readonly type = '[Blog ] Add';
 
   constructor(public payload: Blog) {}

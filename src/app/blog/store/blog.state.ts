@@ -1,7 +1,7 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { Blog } from './../model/blog.model';
 import {
-  AddBlog,
+  CreateBlog,
   DeleteBlog,
   GetBlogs,
   UpdateBlog,
@@ -52,6 +52,22 @@ export class BlogState {
     );
   }
 
+  @Action(CreateBlog)
+  createBlog(
+    { getState, patchState }: StateContext<BlogStateModel>,
+    { payload }: CreateBlog
+  ) {
+    return this.blogService.createBlog(payload).pipe(
+      tap((result) => {
+        const state = getState();
+        patchState({
+          blogs: [...state.blogs, result],
+        });
+        this.router.navigateByUrl('/blogs');
+      })
+    );
+  }
+
   @Action(DeleteBlog)
   deleteBlog(
     { getState, setState }: StateContext<BlogStateModel>,
@@ -87,22 +103,6 @@ export class BlogState {
           ...state,
           blogs: blogList,
         });
-      })
-    );
-  }
-
-  @Action(AddBlog)
-  addBlog(
-    { getState, patchState }: StateContext<BlogStateModel>,
-    { payload }: AddBlog
-  ) {
-    return this.blogService.createBlog(payload).pipe(
-      tap((result) => {
-        const state = getState();
-        patchState({
-          blogs: [...state.blogs, result],
-        });
-        this.router.navigateByUrl('/blogs');
       })
     );
   }

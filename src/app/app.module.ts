@@ -18,12 +18,19 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/components/login/login.component';
 import { SignupComponent } from './auth/components/signup/signup.component';
 import { AuthState } from './auth/store/auth.state';
+import { AuthGuard } from './guards/auth.guard';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 const routes = [
   {
     path: 'blogs',
     component: BlogsListComponent,
+    canActivate: [AuthGuard],
   },
-  { path: 'create-blog', component: CreateBlogComponent },
+  {
+    path: 'create-blog',
+    component: CreateBlogComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'auth/login', component: LoginComponent },
   { path: 'auth/signup', component: SignupComponent },
   { path: '**', redirectTo: 'auth/login' },
@@ -33,11 +40,11 @@ const routes = [
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AuthModule,
     BlogModule,
+    AuthModule,
     RouterModule.forRoot(routes),
-    NgxsModule.forRoot([BlogState]),
-    NgxsModule.forRoot([AuthState]),
+    NgxsModule.forRoot([BlogState, AuthState]),
+    // NgxsModule.forRoot([AuthState]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
   ],

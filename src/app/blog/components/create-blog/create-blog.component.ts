@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Blog } from '../../model/blog.model';
 import * as uuid from 'uuid';
-import { AddBlog } from '../../store/blog.action';
+import { CreateBlog } from '../../store/blog.action';
 
 @Component({
   selector: 'app-create-blog',
@@ -26,6 +26,6 @@ export class CreateBlogComponent implements OnInit {
       title: submittedForm.value.name,
       description: submittedForm.value.description,
     };
-    this.store.dispatch(new AddBlog(blog));
+    this.store.dispatch(new CreateBlog(blog));
   }
 }
